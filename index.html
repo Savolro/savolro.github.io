@@ -1,0 +1,72 @@
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="895097267596-d7c3o116416gsivklr6cgip4bbml5f8s.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://js.braintreegateway.com/web/dropin/1.11.0/js/dropin.min.js"></script>
+  </head>
+  <body>
+	<h1>Very good website with such good UI</h1>
+	<h3>Get IDToken by logging in to your google account</h3>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+	function onSignIn(googleUser) {
+		var profile = googleUser.getBasicProfile();
+		console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		console.log('Name: ' + profile.getName());
+		console.log('Image URL: ' + profile.getImageUrl());
+		console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        document.getElementById("idtoken").value = id_token;
+      };
+    </script>
+	<script>
+	  function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function () {
+		  console.log('User signed out.');
+		});
+	  }
+	</script>
+	<br>
+		Your ID Token:
+	<br>
+		<textarea name="textarea" id="idtoken" style="width:800px;height:400px;"></textarea>
+	<h3>Now use fake credit cart to get nonce </h3>
+	e.g. 4111 1111 1111 1111 (VISA)
+	<div id="dropin-container"></div>
+  <button id="submit-button">Get Nonce</button>
+  <script>
+    var button = document.querySelector('#submit-button');
+
+    braintree.dropin.create({
+      authorization: 'eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI5OGRlY2QwNWQ1NDQ4YmNhNmJmMWFiODFjODEyNDQ2OWQ2MTdhYTdiNWE3YzYyOGVhYTkxOTM3MmZkNTkwY2NlfGNyZWF0ZWRfYXQ9MjAxOC0wNy0wNFQwNzo1NDoyNS40OTMwOTg4MjgrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWptN2J6eXJ0dHRoMjlyNXpcdTAwMjZwdWJsaWNfa2V5PXhqMmt4ZzN0cGNxMzRnbmYiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvam03Ynp5cnR0dGgyOXI1ei9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2ptN2J6eXJ0dHRoMjlyNXovY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vb3JpZ2luLWFuYWx5dGljcy1zYW5kLnNhbmRib3guYnJhaW50cmVlLWFwaS5jb20vam03Ynp5cnR0dGgyOXI1eiJ9LCJ0aHJlZURTZWN1cmVFbmFibGVkIjp0cnVlLCJwYXlwYWxFbmFibGVkIjp0cnVlLCJwYXlwYWwiOnsiZGlzcGxheU5hbWUiOiJCZW5hcyBPcmxvdmFzIiwiY2xpZW50SWQiOm51bGwsInByaXZhY3lVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vcHAiLCJ1c2VyQWdyZWVtZW50VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3RvcyIsImJhc2VVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbSIsImFzc2V0c1VybCI6Imh0dHBzOi8vY2hlY2tvdXQucGF5cGFsLmNvbSIsImRpcmVjdEJhc2VVcmwiOm51bGwsImFsbG93SHR0cCI6dHJ1ZSwiZW52aXJvbm1lbnROb05ldHdvcmsiOnRydWUsImVudmlyb25tZW50Ijoib2ZmbGluZSIsInVudmV0dGVkTWVyY2hhbnQiOmZhbHNlLCJicmFpbnRyZWVDbGllbnRJZCI6Im1hc3RlcmNsaWVudDMiLCJiaWxsaW5nQWdyZWVtZW50c0VuYWJsZWQiOnRydWUsIm1lcmNoYW50QWNjb3VudElkIjoiYmVuYXNvcmxvdmFzIiwiY3VycmVuY3lJc29Db2RlIjoiRVVSIn0sIm1lcmNoYW50SWQiOiJqbTdienlydHR0aDI5cjV6IiwidmVubW8iOiJvZmYifQ==',
+      container: '#dropin-container'
+    }, function (createErr, instance) {
+      button.addEventListener('click', function () {
+        instance.requestPaymentMethod(function (err, payload) {
+        document.getElementById("nonce").value = payload.nonce;
+        });
+      });
+    });
+  </script>
+	<br>
+		Your Nonce:
+	<br>
+		<textarea name="textarea" id="nonce" style="width:800px;height:100px;"></textarea>
+	<br>
+	Google client ID for testing: 895097267596-d7c3o116416gsivklr6cgip4bbml5f8s.apps.googleusercontent.com
+	<br>
+	Braintree Client ID for testing: eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI5OGRlY2QwNWQ1NDQ4YmNhNmJmMWFiODFjODEyNDQ2OWQ2MTdhYTdiNWE3YzYyOGVhYTkxOTM3MmZkNTkwY2NlfGNyZWF0ZWRfYXQ9MjAxOC0wNy0wNFQwNzo1NDoyNS40OTMwOTg4MjgrMDAwMFx1MDAyNm1lcmNoYW50X2lkPWptN2J6eXJ0dHRoMjlyNXpcdTAwMjZwdWJsaWNfa2V5PXhqMmt4ZzN0cGNxMzRnbmYiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvam03Ynp5cnR0dGgyOXI1ei9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2ptN2J6eXJ0dHRoMjlyNXovY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vb3JpZ2luLWFuYWx5dGljcy1zYW5kLnNhbmRib3guYnJhaW50cmVlLWFwaS5jb20vam03Ynp5cnR0dGgyOXI1eiJ9LCJ0aHJlZURTZWN1cmVFbmFibGVkIjp0cnVlLCJwYXlwYWxFbmFibGVkIjp0cnVlLCJwYXlwYWwiOnsiZGlzcGxheU5hbWUiOiJCZW5hcyBPcmxvdmFzIiwiY2xpZW50SWQiOm51bGwsInByaXZhY3lVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vcHAiLCJ1c2VyQWdyZWVtZW50VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3RvcyIsImJhc2VVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbSIsImFzc2V0c1VybCI6Imh0dHBzOi8vY2hlY2tvdXQucGF5cGFsLmNvbSIsImRpcmVjdEJhc2VVcmwiOm51bGwsImFsbG93SHR0cCI6dHJ1ZSwiZW52aXJvbm1lbnROb05ldHdvcmsiOnRydWUsImVudmlyb25tZW50Ijoib2ZmbGluZSIsInVudmV0dGVkTWVyY2hhbnQiOmZhbHNlLCJicmFpbnRyZWVDbGllbnRJZCI6Im1hc3RlcmNsaWVudDMiLCJiaWxsaW5nQWdyZWVtZW50c0VuYWJsZWQiOnRydWUsIm1lcmNoYW50QWNjb3VudElkIjoiYmVuYXNvcmxvdmFzIiwiY3VycmVuY3lJc29Db2RlIjoiRVVSIn0sIm1lcmNoYW50SWQiOiJqbTdienlydHR0aDI5cjV6IiwidmVubW8iOiJvZmYifQ==
+	<br>
+	<br>
+	
+	You can also use my created gmail. Login: oflytest@gmail.com, ofly1234. Server: smtp.gmail.com, port: 587
+	<br>
+	<!-- Fuck css -->
+	<center>Very serious company &copy; 2018</center>
+  
+  </body>
+</html>
