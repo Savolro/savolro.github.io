@@ -1,9 +1,20 @@
 body {
-    text-align: center;
     font-family: 'Courier New', Courier, monospace;
+    width: 220px;
+    height: 215px;
+    text-align: center;
+
+    margin: auto;
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
 }
 img {
-    width: 1.5%;
+    width: 15%;
 }
 .smalltext {
     font-size: 8pt
