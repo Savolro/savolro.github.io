@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no"/>
+    <title>JSON-To-OpenAPI</title>
+    <script src="js/main.js"></script>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="shortcut icon" type="image/png" href="../favicon.png"/>
+  </head>
+  <body>
+    <h1>JSON to OpenAPI</h1>
+    <p>This is a tool for converting JSON example output to OpenAPI schema. Should also work for Swagger and older OpenAPI versions. If you need OpenAPI JSON schema, see <a href="https://github.com/swagger-api/swagger-codegen">swagger-codegen</a>.</p>
+    <input id="generate-examples" type="checkbox" onclick="updateOutputField()">generate examples</input>
+    <br>
+    <input id="values-as-types" type="checkbox" onclick="updateOutputField()">use output values as types</input>
+    <br>
+    <label id="example-input-label" style="display: none">Example JSON input:</label>
+    <br>
+    <textarea id="example-input" class="input" style="display: none"></textarea>
+    <br>
+    <label>JSON input:</label>
+    <br>
+    <textarea id="input" class="input" onchange="updateOutputField()"></textarea>
+    <br>
+    <label>YAML Schema Output:</label>
+    <br>
+    <textarea id="output" class="output"></textarea>
+    <br>
+    <p>Is there anything missing or not working? Report an issue to <a href="https://github.com/Savolro/savolro.github.io/json-to-openapi">GitHub</a> or contribute to this tool!</p>
+    <br>
+    <footer>
+    &copy Savolro 2018
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+footer {
+    text-align: center;
+}
+
+textarea {
+  width: 90%;
+  height: 300px;
+}
