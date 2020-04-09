@@ -9,7 +9,7 @@
 	<body>
 		<section>
 			<p>TODAY IS</p>
-			<b><p id="number">asd</p></b>
+			<b><p id="number">...</p></b>
 			<p>DAY OF QUARANTINE</p>
 			<p class="smalltext">
 				in Lithuania
@@ -38,6 +38,6 @@
 		}
 
 		days = dateDiffInDays(new Date("2020-03-16"), new Date());
-		document.getElementById("number").innerHTML = ordinalSuffixOf(days);
+		document.getElementById("number").innerHTML = ordinalSuffixOf(days+1);
 	</script>
 </html>
