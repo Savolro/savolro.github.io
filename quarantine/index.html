@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DAY OF QUARANTINE</title>
+		<link rel="stylesheet" href="../css/style.css">
+		<link rel="shortcut icon" type="../image/png" href="favicon.png"/>
+		<meta name="verify-paysera" content="dccf5ec154df8a672f43b956cce018c5">
+	</head>
+	<body>
+		<section>
+			<p>TODAY IS</p>
+			<b><p id="number">asd</p></b>
+			<p>DAY OF QUARANTINE</p>
+			<p class="smalltext">
+				in Lithuania
+			</p>
+		</section>
+		<footer>
+			<br>
+			<br>
+			<div id="copy">&copy; 2020</div>
+		</footer>
+	</body>
+	<script>
+		const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+		function dateDiffInDays(a, b) {
+			// Discard the time and time-zone information.
+			const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+			const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+			return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+		}
+		function ordinalSuffixOf(i) {
+			var j = i % 10;
+			if (j == 1) return i + "st";
+			if (j == 2) return i + "nd";
+			if (j == 3) return i + "rd";
+			return i + "th";
+		}
+
+		days = dateDiffInDays(new Date("2020-03-16"), new Date());
+		document.getElementById("number").innerHTML = ordinalSuffixOf(days);
+	</script>
+</html>
